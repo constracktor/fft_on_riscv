@@ -1,174 +1,39 @@
 #!/bin/bash
 ################################################################################
-# Benchmark script for shared-memory behind slurm or on node directly
-########
-# strong scaling
-mkdir result
-mkdir plans
-LOOP=50
-BASE_SIZE=16384
-FFTW_PLAN=estimate
-#FFTW_PLAN=measure
-# Compute benchmark script from 2^start to 2^stop
-POW_START=1
-POW_STOP=7
-# get run command
-if [[ "$1" == "epyc" ]]
+# Benchmark script for shared memory 
+# $1: FFTW planning flag (estimate/measure)
+# $2: partition (epyc/sven)
+if [[ "$2" == "epyc" ]]
 then
-    COMMAND="srun -p $1 -N 1 -c $((2**$POW_STOP)) -t 1:00:00 --exclusive"
-elif [[ "$1" == "node" ]]
+    PARTITION=epyc
+    THREAD_POW=6
+    BUILD_DIR=build_epyc
+elif [[ "$2" == "sven" ]]
 then
-    COMMAND="mpirun"
+    PARTITION="risc5 -w sven0"
+    THREAD_POW=6
+    BUILD_DIR=build_sven
 else
-  echo 'Please specify partition "epyc" or "node" if compute host not behind slurm'
+  echo 'Please specify partition'
   exit 1
 fi
-###############################
-# HPX loop
-# shared
-$COMMAND ./build/fft_hpx_loop_shared --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --run=par --header=true --plan=$FFTW_PLAN
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    $COMMAND ./build/fft_hpx_loop_shared --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --run=par --plan=$FFTW_PLAN
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        $COMMAND ./build/fft_hpx_loop_shared --hpx:threads=$i --nx=$BASE_SIZE --ny=$BASE_SIZE --run=par --plan=$FFTW_PLAN
-    done
-done
-# scatter
-$COMMAND ./build/fft_hpx_loop --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --run=scatter --header=true --plan=$FFTW_PLAN
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    $COMMAND ./build/fft_hpx_loop --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --run=scatter --plan=$FFTW_PLAN
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        $COMMAND ./build/fft_hpx_loop --hpx:threads=$i --nx=$BASE_SIZE --ny=$BASE_SIZE --run=scatter --plan=$FFTW_PLAN
-    done
-done
-##############################
-# HPX future
-# shared sync
-$COMMAND ./build/fft_hpx_task_sync_shared --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --header=true --plan=$FFTW_PLAN
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    $COMMAND ./build/fft_hpx_task_sync_shared --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --plan=$FFTW_PLAN
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        $COMMAND ./build/fft_hpx_task_sync_shared --hpx:threads=$i --nx=$BASE_SIZE --ny=$BASE_SIZE --plan=$FFTW_PLAN
-    done
-done
-# shared optimized version
-$COMMAND ./build/fft_hpx_task_shared --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --header=true --plan=$FFTW_PLAN
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    $COMMAND ./build/fft_hpx_task_shared --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --plan=$FFTW_PLAN
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        $COMMAND ./build/fft_hpx_task_shared --hpx:threads=$i --nx=$BASE_SIZE --ny=$BASE_SIZE --plan=$FFTW_PLAN
-    done
-done
-# shared naive version
-$COMMAND ./build/fft_hpx_task_naive_shared --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --header=true --plan=$FFTW_PLAN
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    $COMMAND ./build/fft_hpx_task_naive_shared --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --plan=$FFTW_PLAN
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        $COMMAND ./build/fft_hpx_task_naive_shared --hpx:threads=$i --nx=$BASE_SIZE --ny=$BASE_SIZE --plan=$FFTW_PLAN
-    done
-done
-# shared agas
-$COMMAND ./build/fft_hpx_task_agas_shared --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --header=true --plan=$FFTW_PLAN
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    $COMMAND ./build/fft_hpx_task_agas_shared --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --plan=$FFTW_PLAN
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        $COMMAND ./build/fft_hpx_task_agas_shared --hpx:threads=$i --nx=$BASE_SIZE --ny=$BASE_SIZE --plan=$FFTW_PLAN
-    done
-done
-# scatter
-$COMMAND ./build/fft_hpx_task_agas --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --run=scatter --header=true --plan=$FFTW_PLAN
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    $COMMAND ./build/fft_hpx_task_agas --hpx:threads=1 --nx=$BASE_SIZE --ny=$BASE_SIZE --run=scatter --plan=$FFTW_PLAN
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        $COMMAND ./build/fft_hpx_task_agas --hpx:threads=$i --nx=$BASE_SIZE --ny=$BASE_SIZE --run=scatter --plan=$FFTW_PLAN
-    done
-done
-###############################
-# FFTW
-# Threads
-$COMMAND ./build/fftw_mpi_threads 1 $BASE_SIZE $BASE_SIZE $FFTW_PLAN 1
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    $COMMAND ./build/fftw_mpi_threads 1 $BASE_SIZE $BASE_SIZE $FFTW_PLAN 0
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        $COMMAND ./build/fftw_mpi_threads $i $BASE_SIZE $BASE_SIZE $FFTW_PLAN 0 
-    done
-done
-# OpenMP
-$COMMAND ./build/fftw_mpi_omp 1 $BASE_SIZE $BASE_SIZE $FFTW_PLAN 1
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    $COMMAND ./build/fftw_mpi_omp 1 $BASE_SIZE $BASE_SIZE $FFTW_PLAN 0
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        $COMMAND ./build/fftw_mpi_omp $i $BASE_SIZE $BASE_SIZE $FFTW_PLAN 0 
-    done
-done
-# MPI
-$COMMAND -n 1 ./build/fftw_mpi_threads 1 $BASE_SIZE $BASE_SIZE $FFTW_PLAN 1
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    $COMMAND -n 1 ./build/fftw_mpi_threads 1 $BASE_SIZE $BASE_SIZE $FFTW_PLAN 0
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        $COMMAND -n $i ./build/fftw_mpi_threads 1 $BASE_SIZE $BASE_SIZE $FFTW_PLAN 0 
-    done
-done
-# HPX
-FFTW3_HPX_NTHREADS=1 $COMMAND ./build/fftw_hpx 1 $BASE_SIZE $BASE_SIZE $FFTW_PLAN 1
-for (( j=1; j<$LOOP; j=j+1 ))
-do
-    FFTW3_HPX_NTHREADS=1 $COMMAND ./build/fftw_hpx 1 $BASE_SIZE $BASE_SIZE $FFTW_PLAN 0
-done
-for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
-do
-    for (( j=0; j<$LOOP; j=j+1 ))
-    do
-        FFTW3_HPX_NTHREADS=$i $COMMAND ./build/fftw_hpx $i  $BASE_SIZE $BASE_SIZE $FFTW_PLAN 0 
-    done
-done
+LOOP=1
+#50
+FFTW_PLAN=$1
+THREADS=$((2**$THREAD_POW))
+cd benchmark
+# HPX implementations
+# shared only
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_loop_shared $FFTW_PLAN $THREAD_POW $LOOP
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_task_sync_shared $FFTW_PLAN $THREAD_POW $LOPP
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_task_shared $FFTW_PLAN $THREAD_POW $LOOP
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_task_naive_shared $FFTW_PLAN $THREAD_POW $LOOP
+# FFTW backends
+# shared only
+#sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_shared.sh $BUILD_DIR/fftw_hpx $FFTW_PLAN $THREAD_POW $LOOP
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_shared.sh $BUILD_DIR/fftw_threads $FFTW_PLAN $THREAD_POW $LOOP
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_shared.sh $BUILD_DIR/fftw_omp $FFTW_PLAN $THREAD_POW $LOOP
+# distributed possible
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_shared.sh $BUILD_DIR/fftw_mpi_threads $FFTW_PLAN $THREAD_POW $LOOP
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_shared.sh $BUILD_DIR/fftw_mpi_omp $FFTW_PLAN $THREAD_POW $LOOP
+

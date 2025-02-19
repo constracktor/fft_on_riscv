@@ -1,0 +1,41 @@
+slurmstepd-ipvs-epyc1: error: Unable to create TMPDIR [/data/scratch/sse/strackar/tmp]: No such file or directory
+slurmstepd-ipvs-epyc1: error: Setting TMPDIR to /tmp
+/home/strackar/git_workspace/a_multidimensional_fft_case_study/benchmark
+ipvs-epyc1
+Wed Feb 19 10:54:03 PM CET 2025
+FFTW 2D with OpenMP shared:
+ HPX threads = 1
+ plan_r2c       = 0.00292071
+ fftw_2d_r2c    = 6.29418
+ plan flops     = 1.27229e+10
+FFTW 2D with OpenMP shared:
+ HPX threads = 2
+ plan_r2c       = 0.00316553
+ fftw_2d_r2c    = 6.05407
+ plan flops     = 1.27229e+10
+FFTW 2D with OpenMP shared:
+ HPX threads = 4
+ plan_r2c       = 0.00398
+ fftw_2d_r2c    = 3.45684
+ plan flops     = 1.27229e+10
+FFTW 2D with OpenMP shared:
+ HPX threads = 8
+ plan_r2c       = 0.00480021
+ fftw_2d_r2c    = 2.57502
+ plan flops     = 1.27229e+10
+FFTW 2D with OpenMP shared:
+ HPX threads = 16
+ plan_r2c       = 0.00605405
+ fftw_2d_r2c    = 1.29619
+ plan flops     = 1.27229e+10
+FFTW 2D with OpenMP shared:
+ HPX threads = 32
+ plan_r2c       = 0.00822265
+ fftw_2d_r2c    = 2.87653
+ plan flops     = 1.27229e+10
+FFTW 2D with OpenMP shared:
+ HPX threads = 64
+ plan_r2c       = 0.0117461
+ fftw_2d_r2c    = 8.37803
+ plan flops     = 1.27229e+10
+Wed Feb 19 10:54:50 PM CET 2025

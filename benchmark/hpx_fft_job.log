@@ -1,0 +1,7 @@
+slurmstepd-ipvs-epyc1: error: Unable to create TMPDIR [/data/scratch/sse/strackar/tmp]: No such file or directory
+slurmstepd-ipvs-epyc1: error: Setting TMPDIR to /tmp
+/home/strackar/git_workspace/a_multidimensional_fft_case_study/benchmark
+ipvs-epyc1
+Wed Feb 19 10:58:23 PM CET 2025
+mkdir: cannot create directory ‘result’: File exists
+mkdir: cannot create directory ‘plans’: File exists

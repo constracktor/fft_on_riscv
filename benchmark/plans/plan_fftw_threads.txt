@@ -1,0 +1,2228 @@
+n_threads;n_x;n_y;plan;planning;fftw_2d_r2c;plan_flops;
+1;16384;16384;estimate;0.00292071;6.29418;1.27229e+10;
+FFTW r2c 2D plan:
+(rdft2-rank>=2/1
+  (rdft2-vrank>=1-x16384/1
+    (rdft2-ct-dit/32
+      (hc2c-direct-32/62/0 "hc2cf_32"
+        (rdft2-r2hc-direct-32 "r2cf_32")
+        (rdft2-r2hc01-direct-32 "r2cfII_32"))
+      (rdft-vrank>=1-x2/1
+        (rdft-buffered-512-x16/16-6
+          (rdft-vrank>=1-x16/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-rank0-tiledbuf/1-x16-x512)
+          (rdft-nop)))))
+  (dft-buffered-16384/8193-6
+    (dft-ct-dit/32
+      (dftw-direct-32/8 "t2_32")
+      (dft-vrank>=1-x32/1
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))))
+    (dft-r2hc-1
+      (rdft-rank0-iter-ci/2-x16384))
+    (dft-nop)))
+
+n_threads;n_x;n_y;plan;planning;fftw_2d_r2c;plan_flops;
+2;16384;16384;estimate;0.00316553;6.05407;1.27229e+10;
+FFTW r2c 2D plan:
+(rdft2-rank>=2/1
+  (rdft2-thr-vrank>=1-x2/1)
+    (rdft2-vrank>=1-x8192/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x8192/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop))))))
+  (dft-thr-vrank>=1-x2/1
+    (dft-buffered-16384/4097-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-vrank>=1-x4096/1
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-buffered-512-x32/32-6
+          (dft-vrank>=1-x32/1
+            (dft-ct-dit/16
+              (dftw-direct-16/8 "t2_16")
+              (dft-direct-32-x16 "n1_32")))
+          (dft-r2hc-1
+            (rdft-rank0-tiledbuf/2-x32-x512))
+          (dft-nop))))))
+
+n_threads;n_x;n_y;plan;planning;fftw_2d_r2c;plan_flops;
+4;16384;16384;estimate;0.00398;3.45684;1.27229e+10;
+FFTW r2c 2D plan:
+(rdft2-rank>=2/1
+  (rdft2-thr-vrank>=1-x4/1)
+    (rdft2-vrank>=1-x4096/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x4096/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x4096/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x4096/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop))))))
+  (dft-thr-vrank>=1-x4/1
+    (dft-buffered-16384/2049-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/2049-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/2049-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-vrank>=1-x2046/1
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-buffered-512-x32/32-6
+          (dft-vrank>=1-x32/1
+            (dft-ct-dit/16
+              (dftw-direct-16/8 "t2_16")
+              (dft-direct-32-x16 "n1_32")))
+          (dft-r2hc-1
+            (rdft-rank0-tiledbuf/2-x32-x512))
+          (dft-nop))))))
+
+n_threads;n_x;n_y;plan;planning;fftw_2d_r2c;plan_flops;
+8;16384;16384;estimate;0.00480021;2.57502;1.27229e+10;
+FFTW r2c 2D plan:
+(rdft2-rank>=2/1
+  (rdft2-thr-vrank>=1-x8/1)
+    (rdft2-vrank>=1-x2048/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x2048/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x2048/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x2048/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x2048/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x2048/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x2048/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x2048/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop))))))
+  (dft-thr-vrank>=1-x8/1
+    (dft-buffered-16384/1025-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/1025-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/1025-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/1025-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/1025-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/1025-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/1025-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-vrank>=1-x1018/1
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-buffered-512-x32/32-6
+          (dft-vrank>=1-x32/1
+            (dft-ct-dit/16
+              (dftw-direct-16/8 "t2_16")
+              (dft-direct-32-x16 "n1_32")))
+          (dft-r2hc-1
+            (rdft-rank0-tiledbuf/2-x32-x512))
+          (dft-nop))))))
+
+n_threads;n_x;n_y;plan;planning;fftw_2d_r2c;plan_flops;
+16;16384;16384;estimate;0.00605405;1.29619;1.27229e+10;
+FFTW r2c 2D plan:
+(rdft2-rank>=2/1
+  (rdft2-thr-vrank>=1-x16/1)
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x1024/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop))))))
+  (dft-thr-vrank>=1-x16/1
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-buffered-16384/513-6
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-vrank>=1-x32/1
+          (dft-ct-dit/16
+            (dftw-direct-16/8 "t2_16")
+            (dft-direct-32-x16 "n1_32"))))
+      (dft-r2hc-1
+        (rdft-rank0-iter-ci/2-x16384))
+      (dft-nop))
+    (dft-vrank>=1-x498/1
+      (dft-ct-dit/32
+        (dftw-direct-32/8 "t2_32")
+        (dft-buffered-512-x32/32-6
+          (dft-vrank>=1-x32/1
+            (dft-ct-dit/16
+              (dftw-direct-16/8 "t2_16")
+              (dft-direct-32-x16 "n1_32")))
+          (dft-r2hc-1
+            (rdft-rank0-tiledbuf/2-x32-x512))
+          (dft-nop))))))
+
+n_threads;n_x;n_y;plan;planning;fftw_2d_r2c;plan_flops;
+32;16384;16384;estimate;0.00822265;2.87653;1.27229e+10;
+FFTW r2c 2D plan:
+(rdft2-rank>=2/1
+  (rdft2-thr-vrank>=1-x32/1)
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop)))))
+    (rdft2-vrank>=1-x512/1
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-vrank>=1-x2/1
+          (rdft-buffered-512-x16/16-6
+            (rdft-vrank>=1-x16/1
+              (rdft-ct-dit/16
+                (hc2hc-direct-16/8 "hf2_16"
+                  (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                  (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+                (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+            (rdft-rank0-tiledbuf/1-x16-x512)
+            (rdft-nop))))))
+  (dft-buffered-16384/8193-6
+    (dft-thr-ct-dit-x32/32
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dft-thr-vrank>=1-x32/1
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))
+        (dft-ct-dit/16
+          (dftw-direct-16/8 "t2_16")
+          (dft-direct-32-x16 "n1_32"))))
+    (dft-r2hc-1
+      (rdft-thr-vrank>=1-x32/1
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)
+        (rdft-rank0-iter-ci/2-x512)))
+    (dft-nop)))
+
+n_threads;n_x;n_y;plan;planning;fftw_2d_r2c;plan_flops;
+64;16384;16384;estimate;0.0117461;8.37803;1.27229e+10;
+FFTW r2c 2D plan:
+(rdft2-rank>=2/1
+  (rdft2-buffered-16384-x2/16384-6
+    (rdft2-thr-vrank>=1-x2/1)
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-thr-vrank>=1-x16/1
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))))
+      (rdft2-ct-dit/32
+        (hc2c-direct-32/62/0 "hc2cf_32"
+          (rdft2-r2hc-direct-32 "r2cf_32")
+          (rdft2-r2hc01-direct-32 "r2cfII_32"))
+        (rdft-thr-vrank>=1-x16/1
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32")))
+          (rdft-thr-vrank>=1-x2/1
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))
+            (rdft-ct-dit/16
+              (hc2hc-direct-16/8 "hf2_16"
+                (rdft-r2hc-direct-r2c-16 "r2cf_16")
+                (rdft-r2hc01-direct-r2c-16 "r2cfII_16"))
+              (rdft-r2hc-direct-r2c-32-x16 "r2cf_32"))))))
+    (dft-r2hc-1
+      (rdft-thr-vrank>=1-x2/1
+        (rdft-thr-vrank>=1-x32/1
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/483))
+        (rdft-thr-vrank>=1-x32/1
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/513)
+          (rdft-rank0-iter-ci/483))))
+    (rdft2-nop))
+  (dft-buffered-16384/8193-6
+    (dft-thr-ct-dit-x64/32
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dftw-direct-32/8 "t2_32")
+      (dft-thr-vrank>=1-x32/1
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))
+        (dft-thr-ct-dit-x2/16
+          (dftw-direct-16/8 "t2_16")
+          (dftw-direct-16/8 "t2_16")
+          (dft-thr-vrank>=1-x2/1
+            (dft-direct-32-x8 "n1_32")
+            (dft-direct-32-x8 "n1_32")))))
+    (dft-r2hc-1
+      (rdft-thr-vrank>=1-x64/1
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)
+        (rdft-rank0-iter-ci/2-x256)))
+    (dft-nop)))
+
