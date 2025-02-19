@@ -1,2 +1,0 @@
-n_threads;n_x;n_y;plan;total;initialization;fft_2d_total;first_fftw;first_trans;second_fftw;second_trans;
-1;16384;16384;estimate;9.14126;1.12949;8.01173;3.15446;1.51056;1.80292;1.54379;
