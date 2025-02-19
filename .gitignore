@@ -1,0 +1,6 @@
+build*
+fftw_scripts/fftw*
+hpx_scripts/hpx*
+benchmark/*.log
+benchmark/plans
+benchmark/result
