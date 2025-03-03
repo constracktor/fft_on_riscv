@@ -20,8 +20,9 @@
 
 # add HPX to PkgConfig path
 export ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )/fftw_hpx"
-export HPX_DIR="../../../hpx_scripts/hpx_1.10_riscv/lib"
-export PKG_CONFIG_PATH="$HPX_DIR/pkgconfig":$PKG_CONFIG_PATH
+#export HPX_DIR="../../../hpx_scripts/hpx_1.10_riscv/lib"
+export HPX_DIR="${ROOT}/../../hpx_scripts/hpx_1.10_riscv/install"
+export PKG_CONFIG_PATH="$HPX_DIR/lib/pkgconfig":$PKG_CONFIG_PATH
 # add ocaml to path
 export OPAM_WORK_DIR="$HOME/.opam/4.11.0/bin"
 export PATH=$OPAM_WORK_DIR:$PATH
@@ -31,7 +32,7 @@ ocamlbuild --version
 # configure folder structure
 export DIR_SRC="$ROOT/src"
 export DIR_INSTALL="$ROOT/install"
-# configure repo                                                                                                
+# configure repo
 export DOWNLOAD_URL="https://github.com/ct-clmsn/fftw3.git"
 export BRANCH="hpx"
 # get src data
@@ -40,7 +41,7 @@ cd $DIR_SRC
 git clone $DOWNLOAD_URL .
 git checkout $BRANCH
 ./bootstrap.sh
-./configure --enable-maintainer-mode --enable-hpx --enable-threads --enable-shared --prefix=$DIR_INSTALL
+./configure --prefix=$DIR_INSTALL --enable-maintainer-mode --enable-hpx
 make -j $(grep -c ^processor /proc/cpuinfo)
 # install
-make install
+#make install
