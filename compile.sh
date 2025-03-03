@@ -29,14 +29,16 @@ then
     # MPI compiler
     export CXX=mpic++
     #export CXX=/opt/apps/openmpi/5.0.3/bin/mpic++
+    # FFTW paths
+    FFTW_RISCV="_riscv"
 else
   echo 'Please specify system: "epyc" or "riscv"'
   exit 1
 fi
 
 # FFTW paths
-export FFTW_TH_DIR="$ROOT/fftw_scripts/$1/fftw_threads_mpi/install/lib"
-export FFTW_OMP_DIR="$ROOT/fftw_scripts/$1/fftw_omp_mpi/install/lib"
+export FFTW_TH_DIR="$ROOT/fftw_scripts/$1/fftw_threads_mpi$FFTW_RISCV/install/lib"
+export FFTW_OMP_DIR="$ROOT/fftw_scripts/$1/fftw_omp_mpi$FFTW_RISCV/install/lib"
 export FFTW_HPX_DIR="$ROOT/fftw_scripts/$1/fftw_hpx/install/lib"
 export PKG_CONFIG_PATH="$FFTW_TH_DIR/pkgconfig":$PKG_CONFIG_PATH
 # for riscv with measure planning: export FFTW_HPX_DIR="$HOME/fft_installations/$FFTW_DIR/fftw_hpx_riscv/install/lib"

@@ -23,10 +23,10 @@ THREADS=$((2**$THREAD_POW))
 cd benchmark
 # HPX implementations
 # shared only
-#sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_loop_shared $FFTW_PLAN $THREAD_POW $LOOP
-#sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_task_sync_shared $FFTW_PLAN $THREAD_POW $LOPP
-#sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_task_shared $FFTW_PLAN $THREAD_POW $LOOP
-#sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_task_naive_shared $FFTW_PLAN $THREAD_POW $LOOP
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_loop_shared $FFTW_PLAN $THREAD_POW $LOOP
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_task_sync_shared $FFTW_PLAN $THREAD_POW $LOPP
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_task_shared $FFTW_PLAN $THREAD_POW $LOOP
+sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_task_naive_shared $FFTW_PLAN $THREAD_POW $LOOP
 # FFTW backends
 # shared only
 #sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_shared.sh $BUILD_DIR/fftw_hpx $FFTW_PLAN $THREAD_POW $LOOP
