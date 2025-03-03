@@ -10,23 +10,26 @@ if [[ "$1" == "epyc" ]]
 then
     # epyc
     module load cmake
-    module load ipvs-epyc/openmpi/4.0.4-gcc-10.2
-    spack load hpx
+    module load gcc/13.2.0
+    #spack load boost hwloc
+    #spack load hpx
+    spack load openmpi@5.0.3
     # HPX lib directory
-    export HPX_DIR="$ROOT/hpx_scripts/hpx_1.9_mpi/install/lib"
+    export HPX_DIR="$ROOT/hpx_scripts/hpx_1.10_mpi/install/lib"
+    export LD_LIBRARY_PATH=$HPX_DIR:$LD_LIBRARY_PATH
     # MPI compiler
-    export CXX="/usr/local.nfs/sgs/software/ipvs-epyc/openmpi/4.0.4-gcc10.2/bin/mpic++"
-
+    export CXX="mpic++"
 elif [[ "$1" == "riscv" ]]
 then
-    # sven
+    # riscv
+    module laoad gcc/13.2.1
     module load openmpi/5.0.3
     # HPX lib directory
     export HPX_DIR="${ROOT}/hpx_scripts/hpx_1.9_riscv/install/lib"
     # MPI compiler
     export CXX=/opt/apps/openmpi/5.0.3/bin/mpic++
 else
-  echo 'Please specify system: "epyc" or "sven"'
+  echo 'Please specify system: "epyc" or "riscv"'
   exit 1
 fi
 
@@ -35,7 +38,7 @@ export FFTW_TH_DIR="$ROOT/fftw_scripts/$1/fftw_threads_mpi/install/lib"
 export FFTW_OMP_DIR="$ROOT/fftw_scripts/$1/fftw_omp_mpi/install/lib"
 export FFTW_HPX_DIR="$ROOT/fftw_scripts/$1/fftw_hpx/install/lib"
 export PKG_CONFIG_PATH="$FFTW_TH_DIR/pkgconfig":$PKG_CONFIG_PATH
-# for sven with measure planning: export FFTW_HPX_DIR="$HOME/fft_installations/$FFTW_DIR/fftw_hpx_riscv/install/lib"
+# for riscv with measure planning: export FFTW_HPX_DIR="$HOME/fft_installations/$FFTW_DIR/fftw_hpx_riscv/install/lib"
 
 ################################################################################
 # Compilation
