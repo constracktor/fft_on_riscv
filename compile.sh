@@ -16,7 +16,7 @@ then
     spack load openmpi@5.0.3
     # HPX lib directory
     export HPX_DIR="$ROOT/hpx_scripts/hpx_1.10_mpi/install/lib"
-    export LD_LIBRARY_PATH=$HPX_DIR:$LD_LIBRARY_PATH
+    #export LD_LIBRARY_PATH=$HPX_DIR:$LD_LIBRARY_PATH
     # MPI compiler
     export CXX="mpic++"
 elif [[ "$1" == "riscv" ]]
@@ -25,9 +25,10 @@ then
     module laoad gcc/13.2.1
     module load openmpi/5.0.3
     # HPX lib directory
-    export HPX_DIR="${ROOT}/hpx_scripts/hpx_1.9_riscv/install/lib"
+    export HPX_DIR="${ROOT}/hpx_scripts/hpx_1.10_riscv/install/lib"
     # MPI compiler
-    export CXX=/opt/apps/openmpi/5.0.3/bin/mpic++
+    export CXX=mpic++
+    #export CXX=/opt/apps/openmpi/5.0.3/bin/mpic++
 else
   echo 'Please specify system: "epyc" or "riscv"'
   exit 1
