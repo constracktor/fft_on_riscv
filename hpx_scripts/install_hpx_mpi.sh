@@ -5,10 +5,12 @@
 #module load gcc/13.2.0 
 #module load mpi/openmpi/5.0.0-gcc-13.2.0
 module load cmake
+module load gcc/13.2.0
+spack load boost hwloc
+spack load openmpi@5.0.3
 
-spack load hpx
 # structure
-export ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )/hpx_1.9_mpi"
+export ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )/hpx_1.10_mpi"
 export DIR_SRC="$ROOT/src"
 export DIR_BUILD="$ROOT/build"
 export DIR_INSTALL="$ROOT/install"
@@ -17,7 +19,7 @@ mkdir -p $DIR_SRC
 cd $DIR_SRC
 export DOWNLOAD_URL="https://github.com/STEllAR-GROUP/hpx"
 git clone ${DOWNLOAD_URL} .
-git checkout release-1.9.X
+git checkout release-1.10.X
 # build
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
