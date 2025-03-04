@@ -17,14 +17,14 @@
 # $3: Number of threads
 # $4: Number of runs
 # Parameters
-LOOP=$3
+LOOP=$4
 POW_START=1
-POW_STOP=$2
+POW_STOP=$3
 BASE_SIZE=16384
 # Get run command
 COMMAND="srun -N 1 -n 1 -c 1"
 EXECUTABLE="../$1"
-ARGUMENTS="$BASE_SIZE $BASE_SIZE 1"
+ARGUMENTS="$BASE_SIZE $BASE_SIZE $2"
 # Log Info
 pwd; hostname; date
 # Create directories to store data
@@ -41,7 +41,7 @@ do
     COMMAND="srun -N 1 -n $i -c 1"
     for (( j=0; j<$LOOP; j=j+1 ))
     do
-        $COMMAND $EXECUTABLE $i $ARGUMENTS 0
+        $COMMAND $EXECUTABLE 1 $ARGUMENTS 0
     done
 done
 #Log Info
