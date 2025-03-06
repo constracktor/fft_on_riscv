@@ -32,23 +32,23 @@ target_link_libraries(fft_hpx_loop_shared
                         PkgConfig::FFTW)
 
 ###########################################################
-# FFTW
-# MPI+Threads
-find_library(
-    FFTW_TH_MPI_LIB
-    NAMES "fftw3_mpi"
-    PATHS $ENV{FFTW_TH_DIR}
-)
-find_library(
-    FFTW_TH_LIB
-    NAMES "fftw3_threads"
-    PATHS $ENV{FFTW_TH_DIR}
-)
-add_executable(fftw_mpi_threads src/fftw_mpi_threads.cpp)
-target_link_libraries(fftw_mpi_threads
-                        PkgConfig::FFTW
-                        ${FFTW_TH_MPI_LIB}
-                        ${FFTW_TH_LIB})
+# # FFTW
+# # MPI+Threads
+# find_library(
+#     FFTW_TH_MPI_LIB
+#     NAMES "fftw3_mpi"
+#     PATHS $ENV{FFTW_TH_DIR}
+# )
+# find_library(
+#     FFTW_TH_LIB
+#     NAMES "fftw3_threads"
+#     PATHS $ENV{FFTW_TH_DIR}
+# )
+# add_executable(fftw_mpi_threads src/fftw_mpi_threads.cpp)
+# target_link_libraries(fftw_mpi_threads
+#                         PkgConfig::FFTW
+#                         ${FFTW_TH_MPI_LIB}
+#                         ${FFTW_TH_LIB})
 
 # MPI+OpenMP
 find_package(OpenMP REQUIRED)
@@ -76,21 +76,21 @@ target_link_libraries(fftw_omp
                         PkgConfig::FFTW
                         ${FFTW_OMP_LIB}
                         OpenMP::OpenMP_CXX)
-
-# Threads
-add_executable(fftw_threads src/fftw_threads.cpp)
-target_link_libraries(fftw_threads
-                        PkgConfig::FFTW
-                        ${FFTW_TH_LIB})
-
-# HPX
-find_library(
-    FFTW_HPX_LIB
-    NAMES "fftw3_hpx"
-    PATHS $ENV{FFTW_HPX_DIR}
-)
-add_executable(fftw_hpx src/fftw_hpx.cpp)
-target_link_libraries(fftw_hpx
-                        PkgConfig::FFTW
-                        ${FFTW_HPX_LIB}
-                        HPX::hpx)
+#
+# # Threads
+# add_executable(fftw_threads src/fftw_threads.cpp)
+# target_link_libraries(fftw_threads
+#                         PkgConfig::FFTW
+#                         ${FFTW_TH_LIB})
+#
+# # HPX
+# find_library(
+#     FFTW_HPX_LIB
+#     NAMES "fftw3_hpx"
+#     PATHS $ENV{FFTW_HPX_DIR}
+# )
+# add_executable(fftw_hpx src/fftw_hpx.cpp)
+# target_link_libraries(fftw_hpx
+#                         PkgConfig::FFTW
+#                         ${FFTW_HPX_LIB}
+#                         HPX::hpx)

@@ -10,10 +10,10 @@ if [[ "$1" == "epyc" ]]
 then
     # epyc
     module load cmake
-    module load gcc/13.2.0
+    module load gcc/13.3.0
     #spack load boost hwloc
     #spack load hpx
-    spack load openmpi@5.0.3
+    spack load openmpi@5.0.3%gcc@13.3.0
     # HPX lib directory
     export HPX_DIR="$ROOT/hpx_scripts/hpx_1.10_mpi/install/lib"
     #export LD_LIBRARY_PATH=$HPX_DIR:$LD_LIBRARY_PATH
@@ -37,10 +37,10 @@ else
 fi
 
 # FFTW paths
-export FFTW_TH_DIR="$ROOT/fftw_scripts/$1/fftw_threads_mpi$FFTW_RISCV/install/lib"
+#export FFTW_TH_DIR="$ROOT/fftw_scripts/$1/fftw_threads_mpi$FFTW_RISCV/install/lib"
 export FFTW_OMP_DIR="$ROOT/fftw_scripts/$1/fftw_omp_mpi$FFTW_RISCV/install/lib"
 export FFTW_HPX_DIR="$ROOT/fftw_scripts/$1/fftw_hpx/install/lib"
-export PKG_CONFIG_PATH="$FFTW_TH_DIR/pkgconfig":$PKG_CONFIG_PATH
+export PKG_CONFIG_PATH="$FFTW_OMP_DIR/pkgconfig":$PKG_CONFIG_PATH
 # for riscv with measure planning: export FFTW_HPX_DIR="$HOME/fft_installations/$FFTW_DIR/fftw_hpx_riscv/install/lib"
 
 ################################################################################
