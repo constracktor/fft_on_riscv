@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 # This script installs FFTW3 from the recommended tarball with MPI+OpenMP backend
-#
-# The folling paths have to be exported (or modules loaded):
-# $MPI_DIR: path to MPI installation
 
-# add MPI to path or load MPI module
-module load gcc/13.3.0
-spack load openmpi@5.0.3%gcc@13.3.0
-#export PATH="$MPI_DIR/bin":$PATH
 # structure
 export ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )/fftw_omp_mpi"
 export DIR_SRC="$ROOT/src"

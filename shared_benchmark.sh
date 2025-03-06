@@ -3,7 +3,7 @@
 # Benchmark script for shared memory 
 PARTITION=epyc
 THREAD_POW=6
-BUILD_DIR=build_epyc
+BUILD_DIR=build
 LOOP=1
 #0
 FFTW_PLAN=estimate
