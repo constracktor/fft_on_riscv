@@ -22,7 +22,7 @@ POW_START=1
 POW_STOP=$3
 BASE_SIZE=16384
 # Get run command
-COMMAND="srun -N 1 -n 1 -c 1"
+COMMAND="srun --cpu-bind=ldoms -N 1 -n 1 -c 1"
 EXECUTABLE="../$1"
 ARGUMENTS="$BASE_SIZE $BASE_SIZE $2"
 # Log Info
@@ -38,7 +38,7 @@ do
 done
 for (( i=2**$POW_START; i<=2**$POW_STOP; i=i*2 ))
 do
-    COMMAND="srun -N 1 -n $i -c 1"
+    COMMAND="srun --cpu-bind=ldoms -N 1 -n $i -c 1"
     for (( j=0; j<$LOOP; j=j+1 ))
     do
         $COMMAND $EXECUTABLE 1 $ARGUMENTS 0
