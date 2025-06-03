@@ -18,7 +18,7 @@ then
 elif [[ "$1" == "riscv" ]]
 then
     # riscv
-    module load gcc/13.2.1
+    #module load gcc/13.2.1
     module load openmpi/5.0.3
     # HPX lib directory
     export HPX_DIR="$ROOT/hpx_scripts/build-scripts/build/hpx/lib64"

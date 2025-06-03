@@ -4,7 +4,7 @@
 # The folling paths have to be exported:
 # $MPI_DIR: path to MPI installation (or load MPI module)
 
-module load gcc/13.2.1
+#module load gcc/13.2.1
 # add MPI to path or load MPI module
 module load openmpi/5.0.3
 #export PATH="$MPI_DIR/bin":$PATH
