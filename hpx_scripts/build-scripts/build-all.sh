@@ -224,17 +224,17 @@ fi
 [[ -n ${BUILD_TARGET_BOOST+x} ]] && \
 (
     echo "Building Boost"
-    #./build-boost.sh
+    ./build-boost.sh
 )
 [[ -n ${BUILD_TARGET_HWLOC+x} ]] && \
 (
     echo "Building hwloc"
-    #./build-hwloc.sh
+    ./build-hwloc.sh
 )
 [[ -n ${BUILD_TARGET_JEMALLOC+x} ]] && \
 (
     echo "Building jemalloc"
-    #./build-jemalloc.sh
+    ./build-jemalloc.sh
 )
 [[ -n ${BUILD_TARGET_HPX+x} ]] && \
 (
