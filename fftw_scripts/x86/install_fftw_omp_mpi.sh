@@ -5,8 +5,8 @@
 # $MPI_DIR: path to MPI installation
 
 # add MPI to path or load MPI module
-module load gcc/13.3.0
-spack load openmpi@5.0.3%gcc@13.3.0
+#module load gcc/13.3.0
+#module load openmpi/4.1.6
 #export PATH="$MPI_DIR/bin":$PATH
 # structure
 export ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )/fftw_omp_mpi"

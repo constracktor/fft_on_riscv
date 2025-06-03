@@ -9,14 +9,10 @@ export BUILD_DIR=build_$1
 if [[ "$1" == "x86" ]]
 then
     # x86
-    module load cmake
-    module load gcc/13.3.0
-    #spack load boost hwloc
-    #spack load hpx
-    spack load openmpi@5.0.3%gcc@13.3.0
+    #module load gcc/13.3.0
+    #module load openmpi/4.1.6
     # HPX lib directory
-    export HPX_DIR="$ROOT/hpx_scripts/hpx_1.10_mpi/install/lib"
-    #export LD_LIBRARY_PATH=$HPX_DIR:$LD_LIBRARY_PATH
+    export HPX_DIR="$ROOT/hpx_scripts/build-scripts/build/hpx/lib"
     # MPI compiler
     export CXX="mpic++"
 elif [[ "$1" == "riscv" ]]
