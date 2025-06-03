@@ -29,11 +29,8 @@ sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_
 sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_hpx_shared.sh $BUILD_DIR/fft_hpx_task_naive_shared $FFTW_PLAN $THREAD_POW $LOOP
 # FFTW backends
 # shared only
-sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_shared.sh $BUILD_DIR/fftw_hpx $FFTW_PLAN $THREAD_POW $LOOP
-sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_shared.sh $BUILD_DIR/fftw_threads $FFTW_PLAN $THREAD_POW $LOOP
 sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_omp.sh $BUILD_DIR/fftw_omp $FFTW_PLAN $THREAD_POW $LOOP
 # distributed possible
-sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_shared.sh $BUILD_DIR/fftw_mpi_threads $FFTW_PLAN $THREAD_POW $LOOP
 sbatch -p $PARTITION -N 1 -n 1 -c $THREADS run_fftw_mpi_omp.sh $BUILD_DIR/fftw_mpi_omp $FFTW_PLAN $THREAD_POW $LOOP
 # MPI
 sbatch -p $PARTITION -N 1 -n $THREADS -c 1 run_fftw_mpi.sh $BUILD_DIR/fftw_mpi_omp $FFTW_PLAN $THREAD_POW $LOOP
