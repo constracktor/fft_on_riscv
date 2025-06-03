@@ -22,10 +22,10 @@ then
 elif [[ "$1" == "riscv" ]]
 then
     # riscv
-    module laoad gcc/13.2.1
+    module load gcc/13.2.1
     module load openmpi/5.0.3
     # HPX lib directory
-    export HPX_DIR="/home/alex/git_workspace/fft_on_riscv/hpx_scripts/build-scripts/build/hpx/lib64"
+    export HPX_DIR="$ROOT/hpx_scripts/build-scripts/build/hpx/lib64"
     # MPI compiler
     export CXX=mpic++
     # FFTW paths
