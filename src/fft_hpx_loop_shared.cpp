@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <numeric>
 #include <map>
 #include <fstream>
 #include <fftw3.h>
