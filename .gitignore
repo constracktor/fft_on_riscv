@@ -1,6 +1,7 @@
-build*
+build_*
 fftw_scripts/*/fftw*
-hpx_scripts/hpx*
+hpx_scripts/build-scripts/build
+hpx_scripts/build-scripts/src
 benchmark/*.log
 benchmark/plans
 benchmark/result
